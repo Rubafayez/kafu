@@ -1,0 +1,7 @@
+{
+  "name": "كفء - اكتشاف الكفاءات والترقية الداخلية",
+  "description": "أداة متخصصة لفرق الموارد البشرية لاكتشاف وتأهيل الكفاءات الداخلية للمناصب الشاغرة قبل التوظيف الخارجي",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

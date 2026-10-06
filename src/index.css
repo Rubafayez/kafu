@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+/* لوحة الألوان: بنفسجي أساسي، أزرق ملكي، لافندر، وكحلي للنصوص */
+@theme {
+  --color-brand-50: #f3efff;
+  --color-brand-100: #e6deff;
+  --color-brand-200: #c9b8ff;
+  --color-brand-300: #b19cfb;
+  --color-brand-400: #8e6cf8;
+  --color-brand-500: #7a52f6;
+  --color-brand-600: #6c3ff5;
+  --color-brand-700: #5226cc;
+  --color-brand-800: #340086;
+  --color-brand-900: #26005f;
+
+  --color-royal: #3157d5;
+  --color-surface: #ffffff;
+  --color-link: #340086;
+
+  /* ألوان الرسوم: مجرّبة للتمييز بينها في الوضعين */
+  --color-chart-1: #6c3ff5;
+  --color-chart-1-strong: #340086;
+  --color-chart-2: #c9b8ff;
+  --color-chart-3: #3157d5;
+
+  --color-slate-50: #f7f6fa;
+  --color-slate-900: #17142b;
+
+  /* النص العادي والنص الثانوي (الخطان 5 و 6 في السلّم) */
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.6;
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.5;
+}
+
+/*
+  سلّم الخطوط: ستة مستويات، كل واحد له حجم ووزن ثابت
+  1 العنوان الرئيسي   40px  عريض   (32px على الجوال)
+  2 عنوان القسم       24px  عريض
+  3 عنوان البطاقة     17px  شبه عريض
+  4 التسمية           15px  شبه عريض
+  5 النص العادي       15px  عادي    (text-sm)
+  6 النص الثانوي      13px  عادي    (text-xs)
+  + الأرقام الكبيرة   32px  عريض   (28px على الجوال)
+*/
+@utility type-1 {
+  font-size: 2rem;
+  line-height: 1.25;
+  font-weight: 700;
+  @media (width >= 40rem) {
+    font-size: 2.5rem;
+  }
+}
+
+@utility type-2 {
+  font-size: 1.5rem;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+@utility type-3 {
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+@utility type-4 {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+@utility type-stat {
+  font-size: 1.75rem;
+  line-height: 1.15;
+  font-weight: 700;
+  @media (width >= 40rem) {
+    font-size: 2rem;
+  }
+}
+
+/* الوضع الليلي: نفس الأصناف، بقيم معكوسة */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-surface: #1e1a36;
+  --color-link: #c9b8ff;
+  --color-royal: #5b7be8;
+
+  --color-slate-50: #100e1f;
+  --color-slate-100: #262145;
+  --color-slate-200: #332d57;
+  --color-slate-300: #453e6e;
+  --color-slate-400: #8b86a8;
+  --color-slate-500: #a29dbd;
+  --color-slate-600: #b9b5cf;
+  --color-slate-700: #d2cfe2;
+  --color-slate-800: #e6e4f0;
+  --color-slate-900: #f7f6fa;
+
+  --color-brand-50: #2a2350;
+  --color-brand-100: #352b66;
+  --color-brand-200: #4a3c8c;
+  --color-brand-600: #8e6cf8;
+  --color-brand-700: #8e6cf8;
+  --color-brand-800: #6c3ff5;
+  --color-brand-900: #7a52f6;
+
+  --color-chart-1: #8e6cf8;
+  --color-chart-1-strong: #c9b8ff;
+  --color-chart-3: #5b7be8;
+
+  --color-emerald-50: #12301f;
+  --color-emerald-100: #17402a;
+  --color-emerald-200: #1f5a3a;
+  --color-emerald-300: #2a7a4f;
+  --color-emerald-700: #6ee7a0;
+  --color-emerald-800: #86efac;
+  --color-emerald-900: #a7f3c4;
+
+  --color-amber-50: #33260a;
+  --color-amber-100: #45330c;
+  --color-amber-200: #6b4e10;
+  --color-amber-300: #8a6514;
+  --color-amber-900: #fcd34d;
+  --color-amber-950: #fde68a;
+
+  --color-rose-50: #3a1420;
+  --color-rose-200: #6b2236;
+  --color-rose-700: #fda4af;
+  --color-rose-800: #fda4af;
+  --color-rose-900: #fecdd3;
+}
+
+@layer base {
+  :root {
+    --font-arabic: 'IBM Plex Sans Arabic', system-ui, -apple-system, sans-serif;
+  }
+
+  html, body {
+    font-family: var(--font-arabic);
+    direction: rtl;
+    text-align: right;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* شريط بنفسجي قصير قبل عناوين الأقسام، يميّزها عن عناوين البطاقات. العنوان داخل بطاقة يأخذ plain-title ليبقى بدونه */
+main h2.type-2:not(.plain-title)::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 0.85em;
+  margin-inline-end: 0.55rem;
+  border-radius: 2px;
+  background: var(--color-brand-600);
+  vertical-align: -0.07em;
+}
+
+/* عناوين النوافذ المنبثقة لا تأخذ شريط الأقسام */
+main .fixed h2.type-2::before {
+  content: none;
+}
